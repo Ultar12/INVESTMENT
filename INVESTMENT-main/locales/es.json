@@ -1,0 +1,96 @@
+{
+"welcome": "¡Bienvenido! Por favor, selecciona tu idioma.",
+"language_name": "Español",
+"language_set": "Idioma establecido en %s. ¡Bienvenido, %s!",
+"welcome_bonus_message": "¡Como nuevo usuario, se ha añadido un bono de bienvenida de %.2f USDT a tu saldo de bonificación! Este bono se puede retirar después de realizar tu primera inversión.",
+"main_menu_title": "Menú Principal\n\n¡Bienvenido de nuevo, %s!",
+"error_generic": "Ocurrió un error. Por favor, inténtalo de nuevo o contacta a soporte.",
+"common": {
+"back": "Volver",
+"cancel": "Cancelar",
+"balance": "Tu Saldo Principal: %.2f USDT"
+},
+"menu": {
+"make_investment": "Realizar Inversión",
+"my_investments": "Mis Inversiones",
+"my_balance": "Mi Saldo",
+"referral_program": "Programa de Referidos",
+"faq": "FAQ",
+"support": "Soporte"
+},
+"plans": {
+"title": "Elige un plan de inversión:",
+"plan_1_button": "Plan 1: 5%% por 24 horas (5 - 50 USDT)",
+"plan_2_button": "Plan 2: 15%% por 72 horas (10 - 200 USDT)",
+"plan_3_button": "Plan 3: 20%% por 7 días (10 - 1000 USDT)",
+"plan_4_button": "Plan 4: 30%% por 30 días (10 - 10000 USDT)",
+"details": "Detalles del Plan:\nBeneficio: %s%%\nDuración: %s horas\nLímites: %s - %s USDT\n\n%s\n\nPor favor, introduce la cantidad que deseas invertir (desde tu Saldo Principal):",
+"invest_success": "¡Éxito! Has invertido %.2f USDT en el %s. Las ganancias se pagarán automáticamente después de %s horas.",
+"err_min_amount": "La inversión mínima para este plan es %s USDT.",
+"err_max_amount": "La inversión máxima para este plan es %s USDT.",
+"err_insufficient_funds": "Fondos insuficientes. Tu saldo principal es %.2f USDT.",
+"err_invalid_amount": "Por favor, introduce un número válido."
+},
+"investments": {
+"title": "Mis Inversiones Activas",
+"no_investments": "No tienes inversiones activas.\n\n¡Haz clic en el botón de abajo para hacer la primera!",
+"investment_entry": "Plan: %s%% por %s horas\nCantidad: %.2f USDT\nBeneficio: %.2f USDT\nVence en: %s"
+},
+"balance": {
+"title": "Mi Saldo\n\nSaldo Principal: %.2f USDT\nSaldo de Bonificación: %.2f USDT\n\nTotal Invertido: %.2f USDT\nTotal Retirado: %.2f USDT",
+"deposit": "Depositar",
+"withdraw": "Retirar",
+"transactions": "Historial de Transacciones"
+},
+"deposit": {
+"ask_amount": "Por favor, introduce la cantidad que deseas depositar (Mín: 10 USDT):",
+"min_error": "El depósito mínimo es 10 USDT.",
+"invoice_created": "<b>Factura BEP20 Creada</b>\n\nCantidad: <b>$%.2f USD</b>\n\nPor favor, haz clic en el botón de abajo para pagar con USDT (BEP20).\n\n<i>Tu saldo se acreditará automáticamente una vez que la red confirme la transacción.</i>",
+"pay_button": "Haga clic para pagar (Solo BEP20)",
+"api_error": "No se pudo crear una factura de depósito. Por favor, inténtalo más tarde.",
+"ipn_success": "¡Tu depósito de %.2f USDT ha sido confirmado y añadido a tu saldo principal!"
+},
+"withdraw": {
+"min_error": "El retiro mínimo es %.2f USDT.",
+"insufficient_funds": "Fondos insuficientes. Solo tienes %.2f USDT en tu saldo principal para retirar.",
+"ask_wallet": "Por favor, introduce tu dirección de billetera USDT (TRC20 o BEP20):",
+"ask_network": "¿Es esta una dirección TRC20 (Tron) o BEP20 (BSC)?",
+"wallet_set_success": "Dirección de billetera establecida: %s (%s)\n\nAhora, introduce la cantidad que deseas retirar (Mín: %s USDT):",
+"ask_amount": "Tu billetera: %s (%s)\n%s\n\nPor favor, introduce la cantidad a retirar (Mín: %s USDT):",
+"request_success": "Tu solicitud de retiro de %.2f USDT ha sido enviada y está pendiente de revisión manual. Esto puede tardar hasta 12 horas.",
+"request_failed": "Error de Retiro: %s. Por favor, contacta a soporte si esto persiste.",
+"invalid_wallet": "Dirección de billetera inválida. Por favor, inténtalo de nuevo.",
+"notify_admin": "Nueva solicitud de retiro:\n\nUsuario: %s (%s)\nCantidad: %.2f USDT\nBilletera: %s (%s)\n\nID de Transacción: %s",
+"admin_approve": "Aprobar",
+"admin_reject": "Rechazar",
+"notify_user_approved": "Tu solicitud de retiro de %.2f USDT ha sido aprobada y procesada.",
+"notify_user_rejected": "Tu solicitud de retiro de %.2f USDT ha sido rechazada. La cantidad ha sido devuelta a tu saldo principal.",
+"bonus_unlocked": "¡Tu bono de %.2f USDT ha sido desbloqueado y añadido a tu saldo principal! Ahora está disponible para retirar."
+},
+"transactions": {
+"title": "Historial de Transacciones",
+"no_transactions": "Aún no tienes transacciones.",
+"entry": "%s | %s | %.2f USDT | Estado: %s"
+},
+"referral": {
+"title": "Programa de Referidos",
+"link": "Tu enlace de referido:",
+"conditions_title": "Condiciones del programa:",
+"stats_all_title": "Estadísticas de todos los tiempos:",
+"earnings_title": "Ganancias de referidos:"
+},
+"faq": {
+"title": "Preguntas Frecuentes",
+"link_text": "Haga clic en el botón de abajo para leer nuestra guía detallada:",
+"button_text": "Abrir FAQ",
+"url": "https://telegra.ph/Information-on-Working-with-the-Bot-11-15-2"
+},
+"support": {
+"title": "Soporte\n\nPara soporte técnico o cualquier consulta, por favor contacta a nuestro admin: @%s"
+},
+"action_canceled": "Acción cancelada.",
+"admin": {
+"add_balance_user": "Un administrador ha añadido %.2f USDT a tu saldo principal.\nTu nuevo saldo principal es %.2f USDT.",
+"remove_balance_user": "Un administrador ha retirado %.2f USDT de tu saldo principal.\nTu nuevo saldo principal es %.2f USDT."
+}
+}
