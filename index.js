@@ -271,11 +271,16 @@ const PING_INTERVAL_MS = 14 * 60 * 1000;
 if (WEBHOOK_DOMAIN) {
     setInterval(async () => {
         try {
-            const response = await fetch(`${WEBHOOK_DOMAIN}/health`);
+            // Ensure WEBHOOK_DOMAIN has the protocol
+            const pingUrl = WEBHOOK_DOMAIN.startsWith('http') 
+                ? `${WEBHOOK_DOMAIN}/health` 
+                : `https://${WEBHOOK_DOMAIN}/health`;
+            
+            const response = await fetch(pingUrl);
             if (!response.ok) {
                 throw new Error(`Ping failed with status: ${response.status}`);
             }
-            console.log(`Keep-alive ping to ${WEBHOOK_DOMAIN}/health sent. Status: ${response.status}`);
+            console.log(`Keep-alive ping to ${pingUrl} sent. Status: ${response.status}`);
         } catch (error) {
             console.error('Keep-alive ping error:', error.message);
         }
