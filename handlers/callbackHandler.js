@@ -123,6 +123,9 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
             // Send confirmation with new language
             await bot.sendMessage(chatId, newLocale__("language_set", langName, from.first_name));
 
+            // Send welcome description
+            await bot.sendMessage(chatId, newLocale__("welcome_description"), { parse_mode: 'HTML' });
+
             // If new user, send welcome bonus message
             if (user.stateContext && user.stateContext.isNewUser) {
                 await bot.sendMessage(chatId, newLocale__("welcome_bonus_message", toFixedSafe(WELCOME_BONUS)));

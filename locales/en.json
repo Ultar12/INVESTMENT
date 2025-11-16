@@ -2,6 +2,7 @@
 "welcome": "Welcome! Please select your language.",
 "language_name": "English",
 "language_set": "Language set to %s. Welcome, %s!",
+"welcome_description": "🤖 <b>Welcome to Atton LLS</b>\n\n<b>About Us:</b>\nAtton LLS is a secure investment platform where you can grow your wealth through flexible investment plans with guaranteed returns. Choose from 5 investment packages with returns ranging from 5% to 40%.\n\n<b>Features:</b>\n✅ 5 Investment Plans (5% - 40% returns)\n✅ Fast Deposits & Withdrawals\n✅ Referral Program (Up to 7% commission)\n✅ Real-time Balance Updates\n✅ 24/7 Support\n\nTap below to get started!",
 "welcome_bonus_message": "As a new user, a welcome bonus of %s USDT has been added to your bonus balance! This bonus can be withdrawn after you make your first investment.",
 "main_menu_title": "Main Menu\n\nWelcome back, %s!",
 "error_generic": "An error occurred. Please try again or contact support.",

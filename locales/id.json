@@ -2,6 +2,7 @@
 "welcome": "Selamat datang! Silakan pilih bahasa Anda.",
 "language_name": "Bahasa Indonesia",
 "language_set": "Bahasa diatur ke %s. Selamat datang, %s!",
+"welcome_description": "🤖 <b>Selamat datang di Atton LLS</b>\n\n<b>Tentang Kami:</b>\nAtton LLS adalah platform investasi aman tempat Anda dapat mengembangkan kekayaan melalui rencana investasi fleksibel dengan pengembalian yang dijamin. Pilih dari 5 paket investasi dengan pengembalian 5% hingga 40%.\n\n<b>Fitur:</b>\n✅ 5 Rencana Investasi (5% - 40% pengembalian)\n✅ Deposit & Penarikan Cepat\n✅ Program Rujukan (Hingga 7% komisi)\n✅ Pembaruan Saldo Real-time\n✅ Dukungan 24/7\n\nKetuk di bawah untuk memulai!",
 "welcome_bonus_message": "Sebagai pengguna baru, bonus selamat datang sebesar %.2f USDT telah ditambahkan ke saldo bonus Anda! Bonus ini dapat ditarik setelah Anda melakukan investasi pertama.",
 "main_menu_title": "Menu Utama\n\nSelamat datang kembali, %s!",
 "error_generic": "Terjadi kesalahan. Silakan coba lagi atau hubungi dukungan.",

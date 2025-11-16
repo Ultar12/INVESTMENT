@@ -45,7 +45,7 @@ module.exports = {
     PORT: process.env.PORT || 3000,
     
     // --- Bot Secrets (Hardcoded) ---
-    BOT_TOKEN: cleanEnvVar("YOUR_NEW_BOT_TOKEN_HERE"),
+    BOT_TOKEN: cleanEnvVar("8215864123:AAHk-5y-4Gqpq_mn9JI__8Iek3uk_rJjp6M"),
     ADMIN_CHAT_ID: 7302005705,
 
     // --- Database (From Environment) ---
@@ -57,7 +57,7 @@ module.exports = {
 
     // --- Bot Info (From Environment) ---
     ADMIN_USERNAME: cleanEnvVar(process.env.ADMIN_USERNAME) || "FINTRUST_admin",
-    BOT_USERNAME: cleanEnvVar(process.env.BOT_USERNAME) || "Fin_Rus_Bot",
+    BOT_USERNAME: cleanEnvVar(process.env.BOT_USERNAME) || "Atton_LLS_Bot",
     
     // --- Webhook (From Environment) ---
     WEBHOOK_DOMAIN: cleanEnvVar(process.env.WEBHOOK_DOMAIN), 

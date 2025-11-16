@@ -2,6 +2,7 @@
 "welcome": "Bienvenue ! Veuillez sélectionner votre langue.",
 "language_name": "Français",
 "language_set": "Langue définie sur %s. Bienvenue, %s !",
+"welcome_description": "🤖 <b>Bienvenue chez Atton LLS</b>\n\n<b>À propos de nous :</b>\nAtton LLS est une plateforme d'investissement sécurisée où vous pouvez accroître votre patrimoine grâce à des plans d'investissement flexibles avec des rendements garantis. Choisissez parmi 5 paquets d'investissement avec des rendements de 5% à 40%.\n\n<b>Fonctionnalités :</b>\n✅ 5 Plans d'Investissement (5% - 40% de rendement)\n✅ Dépôts et Retraits Rapides\n✅ Programme d'Affiliation (Jusqu'à 7% de commission)\n✅ Mise à Jour du Solde en Temps Réel\n✅ Support 24/7\n\nAppuyez ci-dessous pour commencer !",
 "welcome_bonus_message": "En tant que nouvel utilisateur, un bonus de bienvenue de %.2f USDT a été ajouté à votre solde de bonus ! Ce bonus peut être retiré après votre premier investissement.",
 "main_menu_title": "Menu Principal\n\nBon retour parmi nous, %s !",
 "error_generic": "Une erreur est survenue. Veuillez réessayer ou contacter le support.",
