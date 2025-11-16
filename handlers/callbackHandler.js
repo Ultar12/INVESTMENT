@@ -105,7 +105,6 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
             
             // Re-set locale with the NEW language for this response
             i18n.setLocale(newLang);
-            const new__ = i18n.__; // Create a new `__` with the new language
             
             // Delete old message
             try {
@@ -114,20 +113,24 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
                 // Message might already be deleted, ignore
             }
             
+            // Get language name and send messages using i18n.__
+            const langName = i18n.__("language_name");
+            console.log(`Language changed to: ${newLang}, language name: ${langName}`); // DEBUG
+            
             // Send confirmation with new language
-            await bot.sendMessage(chatId, new__("language_set", new__("language_name"), from.first_name));
+            await bot.sendMessage(chatId, i18n.__("language_set", langName, from.first_name));
 
             // If new user, send welcome bonus message
             if (user.stateContext && user.stateContext.isNewUser) {
-                await bot.sendMessage(chatId, new__("welcome_bonus_message", toFixedSafe(WELCOME_BONUS)));
+                await bot.sendMessage(chatId, i18n.__("welcome_bonus_message", toFixedSafe(WELCOME_BONUS)));
                 user.stateContext = {};
                 await user.save();
             }
             
             // Send main menu with updated language
-            const mainMenuText = new__("main_menu_title", from.first_name);
+            const mainMenuText = i18n.__("main_menu_title", from.first_name);
             await bot.sendMessage(chatId, mainMenuText, {
-                reply_markup: getMainMenuKeyboard(user, new__) // Pass `new__`
+                reply_markup: getMainMenuKeyboard(user, i18n.__) // Pass `i18n.__`
             });
             
             return bot.answerCallbackQuery(callbackQuery.id, "Language changed!");
