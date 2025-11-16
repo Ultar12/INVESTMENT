@@ -109,11 +109,18 @@ async function notifyAdminOfActivity(from, action) {
 
 // --- THIS IS THE FIX: Safety function to get user and set language ---
 async function getUserAndLocale(from) {
-    const user = await User.findOne({ where: { telegramId: from.id } });
+    let user = await User.findOne({ where: { telegramId: from.id } });
     
     // --- LANGUAGE FIX ---
     // If user or language is missing, default to 'en'
-    const lang = (user && user.language) ? user.language : 'en';
+    let lang = (user && user.language) ? user.language : 'en';
+    
+    // Force reload if this is a fresh request to ensure we get the latest language
+    if (user) {
+        user = await User.findOne({ where: { id: user.id } });
+        lang = user.language || 'en';
+    }
+    
     i18n.setLocale(lang);
     const __ = i18n.__;
     // --- END OF FIX ---

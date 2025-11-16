@@ -115,9 +115,7 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
             }
             
             // Send confirmation with new language
-            await bot.sendMessage(chatId, new__("language_set", new__("language_name"), from.first_name), {
-                reply_markup: getMainMenuKeyboard(user, new__) // Pass `new__`
-            });
+            await bot.sendMessage(chatId, new__("language_set", new__("language_name"), from.first_name));
 
             // If new user, send welcome bonus message
             if (user.stateContext && user.stateContext.isNewUser) {
@@ -125,6 +123,12 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
                 user.stateContext = {};
                 await user.save();
             }
+            
+            // Send main menu with updated language
+            const mainMenuText = new__("main_menu_title", from.first_name);
+            await bot.sendMessage(chatId, mainMenuText, {
+                reply_markup: getMainMenuKeyboard(user, new__) // Pass `new__`
+            });
             
             return bot.answerCallbackQuery(callbackQuery.id, "Language changed!");
         }
