@@ -43,10 +43,9 @@ const getBalanceKeyboard = (user, __) => {
 const getInvestmentPlansKeyboard = (user, __) => {
     return {
         inline_keyboard: [
-            [{ text: __('plans.plan_1_button'), callback_data: "invest_plan_1" }],
-            [{ text: __('plans.plan_2_button'), callback_data: "invest_plan_2" }],
-            [{ text: __('plans.plan_3_button'), callback_data: "invest_plan_3" }],
-            [{ text: __('plans.plan_4_button'), callback_data: "invest_plan_4" }],
+            [{ text: __('plans.plan_1_button'), callback_data: "invest_plan_1" }, { text: __('plans.plan_2_button'), callback_data: "invest_plan_2" }],
+            [{ text: __('plans.plan_3_button'), callback_data: "invest_plan_3" }, { text: __('plans.plan_4_button'), callback_data: "invest_plan_4" }],
+            [{ text: __('plans.plan_5_button'), callback_data: "invest_plan_5" }],
             [{ text: __('common.back'), callback_data: "back_to_main" }]
         ]
     };

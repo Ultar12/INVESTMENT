@@ -61,10 +61,6 @@ const handleTextInput = async (bot, msg, user, __) => {
             if (amount < plan.min) {
                 return bot.sendMessage(chatId, __("plans.err_min_amount", plan.min), { reply_markup: getCancelKeyboard(user, __) });
             }
-            if (amount > plan.max) {
-                console.log(`Investment amount ${amount} exceeds max ${plan.max}`); // DEBUG
-                return bot.sendMessage(chatId, __("plans.err_max_amount", plan.max), { reply_markup: getCancelKeyboard(user, __) });
-            }
             
             const mainBalance = user.mainBalance || 0;
             if (amount > mainBalance) {
