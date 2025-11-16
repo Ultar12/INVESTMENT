@@ -28,9 +28,17 @@ const handleTextInput = async (bot, msg, user, __) => {
         if (user.state === 'awaiting_investment_amount') {
             const amount = parseFloat(text);
             const plan = PLANS[user.stateContext.planId];
-            if (isNaN(amount) || amount <= 0) return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user, __) });
-            if (amount < plan.min) return bot.sendMessage(chatId, __("plans.err_min_amount", plan.min), { reply_markup: getCancelKeyboard(user, __) });
-            if (amount > plan.max) return bot.sendMessage(chatId, __("plans.err_max_amount", plan.max), { reply_markup: getCancelKeyboard(user, __) });
+            
+            if (isNaN(amount) || amount <= 0) {
+                return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user, __) });
+            }
+            if (amount < plan.min) {
+                return bot.sendMessage(chatId, __("plans.err_min_amount", plan.min), { reply_markup: getCancelKeyboard(user, __) });
+            }
+            if (amount > plan.max) {
+                console.log(`Investment amount ${amount} exceeds max ${plan.max}`); // DEBUG
+                return bot.sendMessage(chatId, __("plans.err_max_amount", plan.max), { reply_markup: getCancelKeyboard(user, __) });
+            }
             
             const mainBalance = user.mainBalance || 0;
             if (amount > mainBalance) {

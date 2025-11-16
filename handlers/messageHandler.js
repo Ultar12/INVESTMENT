@@ -38,6 +38,14 @@ const handleMessage = async (bot, msg, user, __) => {
     // const __ = i18n.__; // <-- REMOVED! We now use the passed-in `__`
 
     try {
+        // --- INTERRUPT: Reset user state if they use any menu command ---
+        if (user.state !== 'none') {
+            user.state = 'none';
+            user.stateContext = {};
+            await user.save();
+        }
+        // --- END OF INTERRUPT ---
+        
         // 📈 Make Investment
         if (text === __('menu.make_investment')) {
             const balanceText = toFixedSafe(user.mainBalance);
