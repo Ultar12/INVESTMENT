@@ -97,23 +97,36 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
     try {
         // --- Language Selection ---
         if (data.startsWith('set_lang_')) {
-            user.language = data.split('_')[2];
+            const newLang = data.split('_')[2];
+            user.language = newLang;
+            user.state = 'none'; // Reset state
+            user.stateContext = user.stateContext || {};
             await user.save();
             
-            // Re-set locale with the NEW language
-            i18n.setLocale(user.language);
-            const new__ = i18n.__; // Create a new `__` for the response
+            // Re-set locale with the NEW language for this response
+            i18n.setLocale(newLang);
+            const new__ = i18n.__; // Create a new `__` with the new language
             
-            await bot.deleteMessage(chatId, msgId);
+            // Delete old message
+            try {
+                await bot.deleteMessage(chatId, msgId);
+            } catch (e) {
+                // Message might already be deleted, ignore
+            }
+            
+            // Send confirmation with new language
             await bot.sendMessage(chatId, new__("language_set", new__("language_name"), from.first_name), {
                 reply_markup: getMainMenuKeyboard(user, new__) // Pass `new__`
             });
 
+            // If new user, send welcome bonus message
             if (user.stateContext && user.stateContext.isNewUser) {
                 await bot.sendMessage(chatId, new__("welcome_bonus_message", toFixedSafe(WELCOME_BONUS)));
                 user.stateContext = {};
                 await user.save();
             }
+            
+            return bot.answerCallbackQuery(callbackQuery.id, "Language changed!");
         }
 
         // --- Back to Main Menu ---

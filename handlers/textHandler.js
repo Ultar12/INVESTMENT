@@ -28,13 +28,13 @@ const handleTextInput = async (bot, msg, user, __) => {
         if (user.state === 'awaiting_investment_amount') {
             const amount = parseFloat(text);
             const plan = PLANS[user.stateContext.planId];
-            if (isNaN(amount) || amount <= 0) return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user) });
-            if (amount < plan.min) return bot.sendMessage(chatId, __("plans.err_min_amount", plan.min), { reply_markup: getCancelKeyboard(user) });
-            if (amount > plan.max) return bot.sendMessage(chatId, __("plans.err_max_amount", plan.max), { reply_markup: getCancelKeyboard(user) });
+            if (isNaN(amount) || amount <= 0) return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user, __) });
+            if (amount < plan.min) return bot.sendMessage(chatId, __("plans.err_min_amount", plan.min), { reply_markup: getCancelKeyboard(user, __) });
+            if (amount > plan.max) return bot.sendMessage(chatId, __("plans.err_max_amount", plan.max), { reply_markup: getCancelKeyboard(user, __) });
             
             const mainBalance = user.mainBalance || 0;
             if (amount > mainBalance) {
-                return bot.sendMessage(chatId, __("plans.err_insufficient_funds", toFixedSafe(mainBalance)), { reply_markup: getCancelKeyboard(user) });
+                return bot.sendMessage(chatId, __("plans.err_insufficient_funds", toFixedSafe(mainBalance)), { reply_markup: getCancelKeyboard(user, __) });
             }
 
             const t = await sequelize.transaction();
@@ -71,7 +71,7 @@ const handleTextInput = async (bot, msg, user, __) => {
         else if (user.state === 'awaiting_deposit_amount') {
             const amount = parseFloat(text);
             if (isNaN(amount) || amount < MIN_DEPOSIT) {
-                return bot.sendMessage(chatId, __("deposit.min_error", MIN_DEPOSIT), { reply_markup: getCancelKeyboard(user) });
+                return bot.sendMessage(chatId, __("deposit.min_error", MIN_DEPOSIT), { reply_markup: getCancelKeyboard(user, __) });
             }
             
             const invoice = await generateDepositInvoice(user, amount);
@@ -146,10 +146,10 @@ const handleTextInput = async (bot, msg, user, __) => {
             const mainBalance = user.mainBalance || 0;
             const minWithdrawalText = toFixedSafe(MIN_WITHDRAWAL);
 
-            if (isNaN(amount) || amount <= 0) return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user) });
-            if (amount < MIN_WITHDRAWAL) return bot.sendMessage(chatId, __("withdraw.min_error", minWithdrawalText), { reply_markup: getCancelKeyboard(user) });
+            if (isNaN(amount) || amount <= 0) return bot.sendMessage(chatId, __("plans.err_invalid_amount"), { reply_markup: getCancelKeyboard(user, __) });
+            if (amount < MIN_WITHDRAWAL) return bot.sendMessage(chatId, __("withdraw.min_error", minWithdrawalText), { reply_markup: getCancelKeyboard(user, __) });
             if (amount > mainBalance) {
-                return bot.sendMessage(chatId, __("withdraw.insufficient_funds", toFixedSafe(mainBalance)), { reply_markup: getCancelKeyboard(user) });
+                return bot.sendMessage(chatId, __("withdraw.insufficient_funds", toFixedSafe(mainBalance)), { reply_markup: getCancelKeyboard(user, __) });
             }
             
             const t = await sequelize.transaction();
