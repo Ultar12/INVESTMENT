@@ -3,7 +3,7 @@ const path = require('path');
 
 i18n.configure({
     // Defines all languages your bot will support
-    locales: ['en', 'es', 'fr', 'ru'],
+    locales: ['en', 'es', 'fr', 'ru', 'id', 'bn', 'hi'],
     
     // Path to the directory where your .json translation files are stored
     directory: path.join(__dirname, '..', 'locales'),

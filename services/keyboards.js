@@ -9,7 +9,9 @@ const getLanguageKeyboard = () => {
     return {
         inline_keyboard: [
             [{ text: "English", callback_data: "set_lang_en" }, { text: "Русский", callback_data: "set_lang_ru" }],
-            [{ text: "Español", callback_data: "set_lang_es" }, { text: "Français", callback_data: "set_lang_fr" }]
+            [{ text: "Español", callback_data: "set_lang_es" }, { text: "Français", callback_data: "set_lang_fr" }],
+            [{ text: "Bahasa Indonesia", callback_data: "set_lang_id" }, { text: "বাংলা", callback_data: "set_lang_bn" }],
+            [{ text: "हिंदी", callback_data: "set_lang_hi" }]
         ]
     };
 };
