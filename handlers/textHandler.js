@@ -24,6 +24,32 @@ const handleTextInput = async (bot, msg, user, __) => {
     const text = msg.text;
 
     try {
+        // --- INTERRUPT: Check if user is using a menu command while in waiting state ---
+        if (user.state !== 'none') {
+            // Check if text matches any menu command
+            const menuCommands = [
+                __('menu.make_investment'),
+                __('menu.my_investments'),
+                __('menu.my_balance'),
+                __('menu.referral_program'),
+                __('menu.faq'),
+                __('menu.support'),
+                __('menu.change_language')
+            ];
+            
+            if (menuCommands.includes(text)) {
+                // Reset state and handle the command
+                user.state = 'none';
+                user.stateContext = {};
+                await user.save();
+                
+                // Call messageHandler to process the command
+                const { handleMessage } = require('./messageHandler');
+                return await handleMessage(bot, msg, user, __);
+            }
+        }
+        // --- END OF INTERRUPT ---
+        
         // --- 1. Awaiting Investment Amount ---
         if (user.state === 'awaiting_investment_amount') {
             const amount = parseFloat(text);

@@ -22,7 +22,7 @@ const WELCOME_BONUS = 2;
 
 // --- Investment Plans ---
 const PLANS = {
-    plan_1: { id: 'plan_1', hours: 24, percent: 5, min: 5, max: 50 },
+    plan_1: { id: 'plan_1', hours: 24, percent: 5, min: 5, max: 500 },
     plan_2: { id: 'plan_2', hours: 72, percent: 15, min: 10, max: 200 },
     plan_3: { id: 'plan_3', hours: 168, percent: 20, min: 10, max: 1000 },
     plan_4: { id: 'plan_4', hours: 720, percent: 30, min: 10, max: 10000 }
