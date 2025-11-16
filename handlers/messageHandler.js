@@ -132,6 +132,13 @@ const handleMessage = async (bot, msg, user, __) => {
         else if (text === __('menu.support')) {
             await bot.sendMessage(chatId, __('support.title', ADMIN_USERNAME));
         }
+        else {
+            // User sent a message that doesn't match any button
+            // Send them the main menu again
+            await bot.sendMessage(chatId, __('main_menu_title', 'User'), {
+                reply_markup: require('../services/keyboards').getMainMenuKeyboard(user, __)
+            });
+        }
 
     } catch (error) {
         console.error("Message handler error:", error);
