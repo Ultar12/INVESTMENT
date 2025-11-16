@@ -45,7 +45,7 @@ module.exports = {
     PORT: process.env.PORT || 3000,
     
     // --- Bot Secrets (Hardcoded) ---
-    BOT_TOKEN: cleanEnvVar("8302539985:AAFPZloZ4mzVQtjw2DduHHyevw0mkpYBnkI"),
+    BOT_TOKEN: cleanEnvVar("YOUR_NEW_BOT_TOKEN_HERE"),
     ADMIN_CHAT_ID: 7302005705,
 
     // --- Database (From Environment) ---
