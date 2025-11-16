@@ -20,10 +20,9 @@ const registerUser = async (bot, msg, referrerCode) => {
         // Existing user
         i18n.setLocale(user.language);
 
-        // --- FIX: Create the `__` function and pass it to the keyboard ---
-        // This makes sure the keyboard shows the user's saved language.
-        const __ = i18n.__;
-        const text = i18n.__('main_menu_title', from.first_name);
+        // --- FIX: Create a localized translation function for the user's language ---
+        const __ = (key, ...args) => i18n.__({ phrase: key, locale: user.language }, ...args);
+        const text = __('main_menu_title', from.first_name);
         bot.sendMessage(chatId, text, {
             reply_markup: getMainMenuKeyboard(user, __) // Pass `__` here
         });

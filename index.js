@@ -122,7 +122,8 @@ async function getUserAndLocale(from) {
     }
     
     i18n.setLocale(lang);
-    const __ = i18n.__;
+    // Create a localized translation function that explicitly uses the user's language
+    const __ = (key, ...args) => i18n.__({ phrase: key, locale: lang }, ...args);
     // --- END OF FIX ---
 
     return { user, __ };
