@@ -132,6 +132,13 @@ const handleMessage = async (bot, msg, user, __) => {
         else if (text === __('menu.support')) {
             await bot.sendMessage(chatId, __('support.title', ADMIN_USERNAME));
         }
+        
+        // 🌐 Change Language
+        else if (text === __('menu.change_language')) {
+            await bot.sendMessage(chatId, __('welcome'), {
+                reply_markup: require('../services/keyboards').getLanguageKeyboard()
+            });
+        }
         else {
             // User sent a message that doesn't match any button
             // Send them the main menu again

@@ -8,10 +8,10 @@ const i18n = require('../services/i18n');
 const getLanguageKeyboard = () => {
     return {
         inline_keyboard: [
-            [{ text: "English", callback_data: "set_lang_en" }, { text: "Русский", callback_data: "set_lang_ru" }],
-            [{ text: "Español", callback_data: "set_lang_es" }, { text: "Français", callback_data: "set_lang_fr" }],
-            [{ text: "Bahasa Indonesia", callback_data: "set_lang_id" }, { text: "বাংলা", callback_data: "set_lang_bn" }],
-            [{ text: "हिंदी", callback_data: "set_lang_hi" }]
+            [{ text: "🇺🇸 English", callback_data: "set_lang_en" }, { text: "🇷🇺 Русский", callback_data: "set_lang_ru" }],
+            [{ text: "🇪🇸 Español", callback_data: "set_lang_es" }, { text: "🇫🇷 Français", callback_data: "set_lang_fr" }],
+            [{ text: "🇮🇩 Bahasa Indonesia", callback_data: "set_lang_id" }, { text: "🇧🇩 বাংলা", callback_data: "set_lang_bn" }],
+            [{ text: "🇮🇳 हिंदी", callback_data: "set_lang_hi" }]
         ]
     };
 };
@@ -25,7 +25,7 @@ const getMainMenuKeyboard = (user, __) => {
             [{ text: __('menu.make_investment') }],
             [{ text: __('menu.my_investments') }, { text: __('menu.my_balance') }],
             [{ text: __('menu.referral_program') }, { text: __('menu.faq') }],
-            [{ text: __('menu.support') }]
+            [{ text: __('menu.support') }, { text: __('menu.change_language') }]
         ],
         resize_keyboard: true
     };
