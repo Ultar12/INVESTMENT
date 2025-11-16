@@ -4,8 +4,8 @@ services:
     name: telegram-investment-bot
     env: node
     plan: free # Start with free, upgrade if needed
-    buildCommand: "yarn install" # <-- Switched to yarn to match your log
-    startCommand: "yarn start" # <-- Switched to yarn
+    buildCommand: "npm install"
+    startCommand: "npm start"
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
