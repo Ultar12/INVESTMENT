@@ -255,6 +255,76 @@ bot.onText(/\/remove (\d+\.?\d*) (\d+)/, async (msg, match) => {
     }
 });
 
+// --- BROADCAST COMMAND ---
+bot.onText(/\/broadcast\s+([\s\S]+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const adminId = msg.from.id;
+    if (adminId.toString() !== ADMIN_CHAT_ID.toString()) { return; }
+    
+    try {
+        const broadcastMessage = match[1];
+        
+        // Get all users who haven't invested or deposited
+        const users = await User.findAll({
+            where: {
+                totalInvested: 0,
+                totalWithdrawn: 0
+            }
+        });
+        
+        let sentCount = 0;
+        let failedCount = 0;
+        
+        for (const user of users) {
+            try {
+                await bot.sendMessage(user.telegramId, broadcastMessage, { parse_mode: 'HTML' });
+                sentCount++;
+            } catch (error) {
+                console.error(`Failed to send broadcast to user ${user.telegramId}:`, error.message);
+                failedCount++;
+            }
+        }
+        
+        await bot.sendMessage(chatId, `✅ Broadcast sent!\n\n📊 Stats:\n✅ Sent: ${sentCount}\n❌ Failed: ${failedCount}\n👥 Total: ${sentCount + failedCount}`);
+    } catch (error) {
+        console.error("Admin /broadcast error:", error);
+        await bot.sendMessage(chatId, "Admin: An error occurred.");
+    }
+});
+
+// --- EXCLUDE COMMAND ---
+bot.onText(/\/exclude\s+(\d+)/, async (msg, match) => {
+    const chatId = msg.chat.id;
+    const adminId = msg.from.id;
+    if (adminId.toString() !== ADMIN_CHAT_ID.toString()) { return; }
+    
+    try {
+        const telegramId = match[1];
+        const user = await User.findOne({ where: { telegramId: telegramId } });
+        
+        if (!user) {
+            return bot.sendMessage(chatId, `Admin: User with ID ${telegramId} not found.`);
+        }
+        
+        // Mark user as "excluded" by adding a small investment/deposit to exclude them from broadcasts
+        // Option: Create a dummy investment with 0.01 USDT
+        const { Investment } = require('./models');
+        
+        if (user.totalInvested === 0 && user.totalWithdrawn === 0) {
+            // Add dummy investment to exclude user
+            user.totalInvested = 0.01;
+            await user.save();
+            
+            await bot.sendMessage(chatId, `✅ User ${user.firstName} (ID: ${telegramId}) has been excluded from broadcasts.`);
+        } else {
+            await bot.sendMessage(chatId, `⚠️ User ${user.firstName} (ID: ${telegramId}) is already not eligible for broadcasts (has investments/deposits).`);
+        }
+    } catch (error) {
+        console.error("Admin /exclude error:", error);
+        await bot.sendMessage(chatId, "Admin: An error occurred.");
+    }
+});
+
 
 // --- Start Server and Database ---
 app.listen(PORT, async () => {
