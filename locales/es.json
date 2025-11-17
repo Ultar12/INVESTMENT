@@ -46,9 +46,12 @@
 "transactions": "Historial de Transacciones"
 },
 "deposit": {
-"ask_amount": "Por favor, introduce la cantidad que deseas depositar (Mín: 10 USDT):",
+"ask_amount": "Por favor, introduce la cantidad que deseas depositar (Mín: %s USDT):",
 "min_error": "El depósito mínimo es 10 USDT.",
-"invoice_created": "<b>Factura BEP20 Creada</b>\n\nCantidad: <b>$%.2f USD</b>\n\nPor favor, haz clic en el botón de abajo para pagar con USDT (BEP20).\n\n<i>Tu saldo se acreditará automáticamente una vez que la red confirme la transacción.</i>",
+"generating_wallet": "🔄 Generando dirección de cartera...",
+"wallet_info": "<b>Depósito de Saldo</b>\n\n<b>Tu Cartera:</b> %s\n\n📋 <b>Instrucciones:</b>\n1️⃣ Envía USDT (BEP20) a la dirección anterior\n2️⃣ Cantidad mínima: 10 USDT\n3️⃣ ¡Usa solo la red <b>BSC (BEP20)!</b>\n4️⃣ Presiona 'Ya Pagué' después de enviar\n\n⚠️ <b>Importante:</b> Usa solo la red BEP20, ¡sino los fondos se perderán!",
+"paid_button": "Ya Pagué",
+"invoice_created": "<b>Factura BEP20 Creada</b>\n\nCantidad: <b>$%s USD</b>\n\nPor favor, haz clic en el botón de abajo para pagar con USDT (BEP20).\n\n<i>Tu saldo se acreditará automáticamente una vez que la red confirme la transacción.</i>",
 "pay_button": "Haga clic para pagar (Solo BEP20)",
 "api_error": "No se pudo crear una factura de depósito. Por favor, inténtalo más tarde.",
 "ipn_success": "¡Tu depósito de %.2f USDT ha sido confirmado y añadido a tu saldo principal!"

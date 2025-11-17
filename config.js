@@ -40,6 +40,9 @@ const REFERRAL_LEVELS = {
 const MIN_WITHDRAWAL = 10;
 const MIN_DEPOSIT = 10;
 
+// --- Manual Deposit Wallet ---
+const DEPOSIT_WALLET = "0x36decaeaf371555837968b9196f323b5708c4b32";
+
 // --- Main Configuration Exports ---
 module.exports = {
     PORT: process.env.PORT || 3000,
@@ -67,5 +70,6 @@ module.exports = {
     REFERRAL_LEVELS,
     MIN_WITHDRAWAL,
     MIN_DEPOSIT,
+    DEPOSIT_WALLET,
     WELCOME_BONUS // Export the new bonus
 };

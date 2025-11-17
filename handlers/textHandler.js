@@ -6,7 +6,7 @@ const {
     getWithdrawNetworkKeyboard, 
     getAdminReviewKeyboard 
 } = require('../services/keyboards');
-const { PLANS, MIN_WITHDRAWAL, MIN_DEPOSIT, ADMIN_CHAT_ID, WELCOME_BONUS } = require('../config');
+const { PLANS, MIN_WITHDRAWAL, MIN_DEPOSIT, ADMIN_CHAT_ID, WELCOME_BONUS, DEPOSIT_WALLET } = require('../config');
 const { handleReferralBonus } = require('./investmentHandler');
 const { generateDepositInvoice } = require('./paymentHandler');
 
@@ -101,43 +101,35 @@ const handleTextInput = async (bot, msg, user, __) => {
         else if (user.state === 'awaiting_deposit_amount') {
             const amount = parseFloat(text);
             if (isNaN(amount) || amount < MIN_DEPOSIT) {
-                return bot.sendMessage(chatId, __("deposit.min_error", MIN_DEPOSIT), { reply_markup: getCancelKeyboard(user, __) });
+                return bot.sendMessage(chatId, __("deposit.min_error"), { reply_markup: getCancelKeyboard(user, __) });
             }
             
-            const invoice = await generateDepositInvoice(user, amount);
+            // Send "generating wallet" message
+            await bot.sendMessage(chatId, __("deposit.generating_wallet"));
             
-            if (invoice && invoice.invoice_url) {
-                
-                // --- FIX: Use `amount` (from user) not `invoice.price_amount` (from API) ---
-                // This ensures the amount is what the user typed.
-                await Transaction.create({
-                    userId: user.id,
-                    type: 'deposit',
-                    amount: amount, // Use the user's typed amount
-                    status: 'pending',
-                    txId: invoice.order_id
-                });
-                
-                user.state = 'none';
-                await user.save();
+            // Create transaction record
+            await Transaction.create({
+                userId: user.id,
+                type: 'deposit',
+                amount: amount,
+                status: 'pending',
+                txId: `manual_${Date.now()}`
+            });
+            
+            user.state = 'none';
+            await user.save();
 
-                // --- FIX: Use `amount` (from user) not `invoice.price_amount` (from API) ---
-                const text = __("deposit.invoice_created", toFixedSafe(amount));
-                // --- END OF FIX ---
-
-                await bot.sendMessage(chatId, text, { 
-                    parse_mode: 'HTML',
-                    reply_markup: {
-                        inline_keyboard: [
-                            [{ text: __("deposit.pay_button"), url: invoice.invoice_url }],
-                            [{ text: __("common.cancel"), callback_data: "cancel_action" }]
-                        ]
-                    }
-                });
-                return;
-            } else {
-                await bot.sendMessage(chatId, __("deposit.api_error"));
-            }
+            // Send wallet info with manual deposit instructions
+            const walletInfo = __("deposit.wallet_info", DEPOSIT_WALLET);
+            await bot.sendMessage(chatId, walletInfo, { 
+                parse_mode: 'HTML',
+                reply_markup: {
+                    inline_keyboard: [
+                        [{ text: __("deposit.paid_button"), callback_data: "deposit_paid" }],
+                        [{ text: __("common.cancel"), callback_data: "cancel_action" }]
+                    ]
+                }
+            });
         }
 
         // --- 3. Awaiting Wallet Address ---

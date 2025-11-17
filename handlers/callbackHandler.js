@@ -315,6 +315,28 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
             });
         }
         
+        // --- Deposit Paid (Manual Deposit) ---
+        else if (data === 'deposit_paid') {
+            // Find the pending deposit transaction
+            const pendingDeposit = await Transaction.findOne({
+                where: { userId: user.id, type: 'deposit', status: 'pending' },
+                order: [['createdAt', 'DESC']]
+            });
+            
+            if (pendingDeposit) {
+                // Send notification to admin
+                const userInfo = `User: ${from.first_name} (ID: ${from.id})\nAmount: ${toFixedSafe(pendingDeposit.amount)} USDT`;
+                await bot.sendMessage(ADMIN_CHAT_ID, `New manual deposit for verification:\n\n${userInfo}\n\nTransaction ID: ${pendingDeposit.id}`, {
+                    reply_markup: getAdminReviewKeyboard(pendingDeposit.id, __)
+                });
+                
+                // Send confirmation to user
+                await editOrSend(bot, chatId, msgId, `✅ Your deposit of ${toFixedSafe(pendingDeposit.amount)} USDT has been submitted for verification. You will be notified once it's confirmed!`, { reply_markup: undefined });
+            } else {
+                await editOrSend(bot, chatId, msgId, "No pending deposit found.", { reply_markup: undefined });
+            }
+        }
+        
         // --- Transaction History ---
         else if (data === 'transactions') {
             const txs = await Transaction.findAll({ 

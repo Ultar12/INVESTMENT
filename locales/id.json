@@ -46,9 +46,12 @@
 "transactions": "Riwayat Transaksi"
 },
 "deposit": {
-"ask_amount": "Silakan masukkan jumlah yang ingin Anda setor (Min: %s USDT):",
+"ask_amount": "Silakan masukkan jumlah yang ingin Anda setorkan (Min: %s USDT):",
 "min_error": "Setoran minimum adalah 10 USDT.",
-"invoice_created": "<b>Invoice BEP20 Dibuat</b>\n\nJumlah: <b>$%s USD</b>\n\nSilakan klik tombol di bawah untuk membayar dengan USDT (BEP20).\n\n<i>Saldo Anda akan dikreditkan secara otomatis setelah jaringan mengkonfirmasi transaksi.</i>",
+"generating_wallet": "🔄 Menghasilkan alamat dompet...",
+"wallet_info": "<b>Setor Saldo</b>\n\n<b>Dompet Anda:</b> %s\n\n📋 <b>Petunjuk:</b>\n1️⃣ Kirim USDT (BEP20) ke alamat di atas\n2️⃣ Jumlah minimum: 10 USDT\n3️⃣ Gunakan hanya jaringan <b>BSC (BEP20)!</b>\n4️⃣ Tekan 'Sudah Bayar' setelah mengirim\n\n⚠️ <b>Penting:</b> Gunakan hanya jaringan BEP20, jika tidak, dana akan hilang!",
+"paid_button": "Sudah Bayar",
+"invoice_created": "<b>Faktur BEP20 Dibuat</b>\n\nJumlah: <b>$%s USD</b>\n\nSilakan klik tombol di bawah untuk membayar dengan USDT (BEP20).\n\n<i>Saldo Anda akan dikreditkan secara otomatis setelah jaringan mengonfirmasi transaksi.</i>",
 "pay_button": "Klik untuk Membayar (BEP20 Saja)",
 "api_error": "Tidak dapat membuat invoice setoran. Silakan coba lagi nanti.",
 "ipn_success": "Setoran Anda sebesar %.2f USDT telah dikonfirmasi dan ditambahkan ke saldo utama Anda!"
