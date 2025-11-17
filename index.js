@@ -255,15 +255,12 @@ bot.onText(/\/remove (\d+\.?\d*) (\d+)/, async (msg, match) => {
     }
 });
 
-// --- BROADCAST COMMAND ---
-bot.onText(/\/broadcast\s+([\s\S]+)/, async (msg, match) => {
+// --- BROADCAST COMMAND (MEDIA/REPLY SUPPORT) ---
+bot.onText(/\/broadcast(?:\s+([\s\S]+))?/, async (msg, match) => {
     const chatId = msg.chat.id;
     const adminId = msg.from.id;
     if (adminId.toString() !== ADMIN_CHAT_ID.toString()) { return; }
-    
     try {
-        const broadcastMessage = match[1];
-        
         // Get all users who haven't invested or deposited
         const users = await User.findAll({
             where: {
@@ -271,20 +268,33 @@ bot.onText(/\/broadcast\s+([\s\S]+)/, async (msg, match) => {
                 totalWithdrawn: 0
             }
         });
-        
         let sentCount = 0;
         let failedCount = 0;
-        
-        for (const user of users) {
-            try {
-                await bot.sendMessage(user.telegramId, broadcastMessage, { parse_mode: 'HTML' });
-                sentCount++;
-            } catch (error) {
-                console.error(`Failed to send broadcast to user ${user.telegramId}:`, error.message);
-                failedCount++;
+        // If this is a reply to a message (media or text)
+        if (msg.reply_to_message) {
+            for (const user of users) {
+                try {
+                    // Forward the original message (media, text, etc)
+                    await bot.forwardMessage(user.telegramId, chatId, msg.reply_to_message.message_id);
+                    sentCount++;
+                } catch (error) {
+                    console.error(`Failed to forward broadcast to user ${user.telegramId}:`, error.message);
+                    failedCount++;
+                }
+            }
+        } else {
+            // Not a reply: send as text/caption
+            const broadcastMessage = match[1];
+            for (const user of users) {
+                try {
+                    await bot.sendMessage(user.telegramId, broadcastMessage, { parse_mode: 'HTML' });
+                    sentCount++;
+                } catch (error) {
+                    console.error(`Failed to send broadcast to user ${user.telegramId}:`, error.message);
+                    failedCount++;
+                }
             }
         }
-        
         await bot.sendMessage(chatId, `✅ Broadcast sent!\n\n📊 Stats:\n✅ Sent: ${sentCount}\n❌ Failed: ${failedCount}\n👥 Total: ${sentCount + failedCount}`);
     } catch (error) {
         console.error("Admin /broadcast error:", error);
