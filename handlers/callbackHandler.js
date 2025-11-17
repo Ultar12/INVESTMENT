@@ -157,6 +157,9 @@ const handleCallback = async (bot, callbackQuery, user, __) => {
             user.stateContext = user.stateContext || {};
             await user.save();
             
+            // Reload user to ensure latest language is used
+            await user.reload();
+            
             // Re-set locale with the NEW language for this response
             i18n.setLocale(newLang);
             
