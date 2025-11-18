@@ -24,8 +24,8 @@ const getMainMenuKeyboard = (user, __) => {
         keyboard: [
             [{ text: __('menu.make_investment') }],
             [{ text: __('menu.my_investments') }, { text: __('menu.my_balance') }],
-            [{ text: __('menu.referral_program') }, { text: __('menu.faq') }],
-            [{ text: __('menu.support') }, { text: __('menu.change_language') }]
+            [{ text: __('menu.referral_program') }, { text: __('menu.support') }],
+            [{ text: __('menu.change_language') }]
         ],
         resize_keyboard: true
     };
