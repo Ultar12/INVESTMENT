@@ -37,7 +37,7 @@ const REFERRAL_LEVELS = {
 };
 
 // --- Bot Limits ---
-const MIN_WITHDRAWAL = 20;
+const MIN_WITHDRAWAL = 10;
 const MIN_DEPOSIT = 10;
 
 // --- Manual Deposit Wallet ---
